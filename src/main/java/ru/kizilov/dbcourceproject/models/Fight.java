@@ -1,8 +1,7 @@
 package ru.kizilov.dbcourceproject.models;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="fights")
@@ -10,29 +9,28 @@ public class Fight {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long fightid;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="id")
-    private List<Sportsman> sportsmans;
+    @OneToMany(mappedBy = "fight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Sportsman> sportsmans;
 
     private Long identifWin;
 
     private Long identifEvent;
 
     public Long getId() {
-        return id;
+        return fightid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.fightid = id;
     }
 
-    public List<Sportsman> getSportsmans() {
+    public Set<Sportsman> getSportsmans() {
         return sportsmans;
     }
 
-    public void setSportsmans(List<Sportsman> sportsmans) {
+    public void setSportsmans(Set<Sportsman> sportsmans) {
         this.sportsmans = sportsmans;
     }
 

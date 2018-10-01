@@ -9,9 +9,6 @@ import javax.persistence.*;
 @Table(name = "sportsmans")
 public class Sportsman {
 
-    public Sportsman() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,6 +30,18 @@ public class Sportsman {
     private int countOfWin;
 
     private int countOfDraw;
+
+    public Fight getFight() {
+        return fight;
+    }
+
+    public void setFight(Fight fight) {
+        this.fight = fight;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="fightid")
+    private Fight fight;
 
     public Long getId() {
         return id;

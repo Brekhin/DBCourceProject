@@ -22,6 +22,11 @@ public class SportsmanService {
         sportsmanRepo.save(sportsman);
     }
 
+    public Sportsman getFighterByAlias(String alias) {
+        System.out.println(sportsmanRepo.findByAlias(alias).getAlias() + "---" + sportsmanRepo.findByAlias(alias).getFirstName());
+        return sportsmanRepo.findByAlias(alias);
+    }
+
     public List<Sportsman> getAllSportsmans(){
         return sportsmanRepo.findAll();
     }
