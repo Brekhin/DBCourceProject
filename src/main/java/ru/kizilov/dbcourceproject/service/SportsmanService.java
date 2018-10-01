@@ -13,15 +13,13 @@ public class SportsmanService {
     @Autowired
     private SportsmanRepo sportsmanRepo;
 
-    public boolean addSportsman(Sportsman sportsman) {
-        Sportsman sportsmanFromDb = sportsmanRepo.findOne(sportsman.getId());
-        if(sportsmanFromDb != null) {
-            return false;
-        }
+    public void addSportsman(String firstName, String lastName, String alias) {
+        Sportsman sportsman = new Sportsman();
+        sportsman.setFirstName(firstName);
+        sportsman.setLastName(lastName);
+        sportsman.setAlias(alias);
 
         sportsmanRepo.save(sportsman);
-
-        return true;
     }
 
     public List<Sportsman> getAllSportsmans(){

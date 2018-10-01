@@ -9,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "sportsmans")
 public class Sportsman {
 
+    public Sportsman() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
