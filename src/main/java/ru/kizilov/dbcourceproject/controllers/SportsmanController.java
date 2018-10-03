@@ -36,4 +36,23 @@ public class SportsmanController {
         return "redirect:/index";
     }
 
+    @GetMapping("/index/{id}")
+    public String showProfile(@PathVariable Long id, Model model) {
+        Sportsman sportsman1 = sportsmanService.getSportsmanInfo(id);
+        model.addAttribute("sportsman", sportsman1);
+        return "sportsmanEdit";
+    }
+
+    @PostMapping("/index/{id}")
+    public String updateProfile(@PathVariable Long id,
+                                @RequestParam String firstName,
+                                @RequestParam String lastName,
+                                @RequestParam String alias,
+                                @RequestParam int growth,
+                                @RequestParam int weight,
+                                @RequestParam int lengthOfHands) {
+        Sportsman sportsman1 = sportsmanService.getSportsmanInfo(id);
+        sportsmanService.updateSportsman(sportsman1, firstName, lastName, alias, growth, weight, lengthOfHands);
+        return "sportsmanEdit";
+    }
 }

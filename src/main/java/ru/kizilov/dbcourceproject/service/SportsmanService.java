@@ -29,12 +29,30 @@ public class SportsmanService {
         sportsmanRepo.save(sportsman);
     }
 
+    public void updateSportsman(Sportsman sportsman, String firstName, String lastName, String alias, int growth,
+                                int weight, int lengthOfHands) {
+        sportsman.setFirstName(firstName);
+        sportsman.setLastName(lastName);
+        sportsman.setAlias(alias);
+        sportsman.setGrowth(growth);
+        sportsman.setWeight(weight);
+        sportsman.setLengthOfHands(lengthOfHands);
+        sportsman.setCountOfLose(0);
+        sportsman.setCountOfWin(0);
+        sportsman.setCountOfDraw(0);
+        sportsmanRepo.save(sportsman);
+    }
+
+    public Sportsman getSportsmanInfo(Long id) {
+        return sportsmanRepo.findOne(id);
+    }
+
     public Sportsman getFighterByAlias(String alias) {
         System.out.println(sportsmanRepo.findByAlias(alias).getAlias() + "---" + sportsmanRepo.findByAlias(alias).getFirstName());
         return sportsmanRepo.findByAlias(alias);
     }
 
-    public List<Sportsman> getAllSportsmans(){
+    public List<Sportsman> getAllSportsmans() {
         return sportsmanRepo.findAll();
     }
 }
