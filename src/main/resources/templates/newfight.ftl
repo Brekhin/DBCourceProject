@@ -1,3 +1,5 @@
+<#import "parts/common.ftl" as c>
+<@c.page>
 <form action="/newfight" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <div class="form-group-row">
@@ -16,3 +18,4 @@
         </div>
     <button class="btn btn-primary" type="submit">BTN</button>
 </form>
+</@c.page>

@@ -13,11 +13,18 @@ public class SportsmanService {
     @Autowired
     private SportsmanRepo sportsmanRepo;
 
-    public void addSportsman(String firstName, String lastName, String alias) {
+    public void addSportsman(String firstName, String lastName, String alias, int growth,
+                             int weight, int lengthOfHands) {
         Sportsman sportsman = new Sportsman();
         sportsman.setFirstName(firstName);
         sportsman.setLastName(lastName);
         sportsman.setAlias(alias);
+        sportsman.setGrowth(growth);
+        sportsman.setWeight(weight);
+        sportsman.setLengthOfHands(lengthOfHands);
+        sportsman.setCountOfLose(0);
+        sportsman.setCountOfWin(0);
+        sportsman.setCountOfDraw(0);
 
         sportsmanRepo.save(sportsman);
     }

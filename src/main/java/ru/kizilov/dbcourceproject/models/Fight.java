@@ -11,7 +11,7 @@ public class Fight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long fightid;
 
-    @OneToMany(mappedBy = "fight", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "fights")
     private Set<Sportsman> sportsmans;
 
     private Long identifWin;

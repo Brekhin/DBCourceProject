@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.kizilov.dbcourceproject.models.Fight;
 import ru.kizilov.dbcourceproject.service.FightServise;
 import ru.kizilov.dbcourceproject.service.SportsmanService;
 
@@ -22,7 +23,7 @@ public class FightController {
 
     @GetMapping("/fights")
     public String getAllFights(Model model) {
-        List fights = fightServise.getAllFight();
+        List<Fight> fights = fightServise.getAllFight();
         model.addAttribute("fights", fights);
         return "fights";
     }
@@ -31,6 +32,7 @@ public class FightController {
     public String getFightPage(){
         return "newfight";
     }
+
     @PostMapping("/newfight")
     public String addFight(@RequestParam String aliasFirstFighter,
                            @RequestParam String aliasSecondFighter) {

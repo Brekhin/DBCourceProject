@@ -27,9 +27,12 @@ public class SportsmanController {
     @PostMapping("/newsportsman")
     public String addSportsman(@RequestParam String firstName,
                                @RequestParam String lastName,
-                               @RequestParam String alias) {
+                               @RequestParam String alias,
+                               @RequestParam int growth,
+                               @RequestParam int weight,
+                               @RequestParam int lengthOfHands) {
 
-        sportsmanService.addSportsman(firstName, lastName, alias);
+        sportsmanService.addSportsman(firstName, lastName, alias, growth, weight, lengthOfHands);
         return "redirect:/index";
     }
 

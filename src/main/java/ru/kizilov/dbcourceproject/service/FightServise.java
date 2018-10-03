@@ -32,8 +32,8 @@ public class FightServise {
             fight.setSportsmans(sportsmanSet);
         }
 
-        sportsmanFirst.setFight(fight);
-        sportsmanSecond.setFight(fight);
+        sportsmanFirst.getFights().add(fight);
+        sportsmanSecond.getFights().add(fight);
 
         fightRepo.save(fight);
     }

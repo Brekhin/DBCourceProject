@@ -1,9 +1,10 @@
 package ru.kizilov.dbcourceproject.models;
 
-
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "sportsmans")
@@ -31,20 +32,26 @@ public class Sportsman {
 
     private int countOfDraw;
 
-    public Fight getFight() {
-        return fight;
-    }
-
-    public void setFight(Fight fight) {
-        this.fight = fight;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="fightid")
-    private Fight fight;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "fight_sport",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "fightid")
+    )
+    private Set<Fight> fights = new HashSet<>();
 
     public Long getId() {
         return id;
+    }
+
+    public Set<Fight> getFights() {
+        return fights;
+    }
+
+    public void setFights(Set<Fight> fights) {
+        this.fights = fights;
     }
 
     public void setId(Long id) {
