@@ -35,6 +35,7 @@ public class SportsmanController {
         sportsmanService.addSportsman(firstName, lastName, alias, growth, weight, lengthOfHands);
         return "redirect:/index";
     }
+    
 
     @GetMapping("/index/{id}")
     public String showProfile(@PathVariable Long id, Model model) {
