@@ -1,9 +1,7 @@
 package ru.kizilov.dbcourceproject.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,7 +9,8 @@ import java.util.Set;
 public class Sportsman {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
     private String firstName;
@@ -41,6 +40,16 @@ public class Sportsman {
             inverseJoinColumns = @JoinColumn(name = "fightid")
     )
     private Set<Fight> fights = new HashSet<>();
+
+    private String filename;
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public Long getId() {
         return id;

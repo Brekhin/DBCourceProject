@@ -1,6 +1,6 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
-<form action="/newsportsman" method="post">
+<form method="post"  enctype="multipart/form-data" >
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
     <div class="form-group-row">
             <label class="col-sm-2 col-form-label">firstName</label>
@@ -42,6 +42,15 @@
         <div class="col-sm-6">
         <input type="text" name="lengthOfHands" class="form-control"
                placeholder="input lengthOfHands"/>
+        </div>
+    </div>
+
+    <div>
+        <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" name="file" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
         </div>
     </div>
 

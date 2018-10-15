@@ -6,6 +6,7 @@ import ru.kizilov.dbcourceproject.models.Sportsman;
 import ru.kizilov.dbcourceproject.repositories.SportsmanRepo;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SportsmanService {
@@ -13,38 +14,36 @@ public class SportsmanService {
     @Autowired
     private SportsmanRepo sportsmanRepo;
 
-    public void addSportsman(String firstName, String lastName, String alias, int growth,
-                             int weight, int lengthOfHands) {
-        Sportsman sportsman = new Sportsman();
-        sportsman.setFirstName(firstName);
-        sportsman.setLastName(lastName);
-        sportsman.setAlias(alias);
-        sportsman.setGrowth(growth);
-        sportsman.setWeight(weight);
-        sportsman.setLengthOfHands(lengthOfHands);
-        sportsman.setCountOfLose(0);
-        sportsman.setCountOfWin(0);
-        sportsman.setCountOfDraw(0);
-
+    public void addSportsman(Sportsman sportsman) {
         sportsmanRepo.save(sportsman);
     }
 
-    public void updateSportsman(Sportsman sportsman, String firstName, String lastName, String alias, int growth,
+    public void updateSportsman(Optional<Sportsman> sportsman, String firstName, String lastName, String alias, int growth,
                                 int weight, int lengthOfHands) {
-        sportsman.setFirstName(firstName);
-        sportsman.setLastName(lastName);
-        sportsman.setAlias(alias);
-        sportsman.setGrowth(growth);
-        sportsman.setWeight(weight);
-        sportsman.setLengthOfHands(lengthOfHands);
-        sportsman.setCountOfLose(0);
-        sportsman.setCountOfWin(0);
-        sportsman.setCountOfDraw(0);
-        sportsmanRepo.save(sportsman);
+        if(firstName != null) {
+            sportsman.get().setFirstName(firstName);
+        }
+        if(lastName != null) {
+            sportsman.get().setLastName(lastName);
+        }
+        if(alias != null) {
+            sportsman.get().setAlias(alias);
+        }
+        if(growth != -100) {
+            sportsman.get().setGrowth(growth);
+        }
+        if(weight != -100) {
+            sportsman.get().setWeight(weight);
+        }
+        if(lengthOfHands != -100) {
+            sportsman.get().setLengthOfHands(lengthOfHands);
+        }
+
+        sportsmanRepo.save(sportsman.get());
     }
 
-    public Sportsman getSportsmanInfo(Long id) {
-        return sportsmanRepo.findOne(id);
+    public Optional<Sportsman> getSportsmanInfo(Long id) {
+        return sportsmanRepo.findById(id);
     }
 
     public Sportsman getFighterByAlias(String alias) {
