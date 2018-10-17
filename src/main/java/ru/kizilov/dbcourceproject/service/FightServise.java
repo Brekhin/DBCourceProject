@@ -9,6 +9,7 @@ import ru.kizilov.dbcourceproject.repositories.SportsmanRepo;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -20,8 +21,7 @@ public class FightServise {
     @Autowired
     private SportsmanRepo sportsmanRepo;
 
-    public void addFight(Sportsman sportsmanFirst, Sportsman sportsmanSecond) {
-        Fight fight = new Fight();
+    public void addFight(Fight fight, Sportsman sportsmanFirst, Sportsman sportsmanSecond) {
         if(fight.getSportsmans() != null) {
             fight.getSportsmans().add(sportsmanFirst);
             fight.getSportsmans().add(sportsmanSecond);
@@ -40,5 +40,9 @@ public class FightServise {
 
     public List<Fight> getAllFight() {
         return fightRepo.findAll();
+    }
+
+    public Optional<Fight> getFightByID(Long id){
+        return fightRepo.findById(id);
     }
 }

@@ -8,7 +8,8 @@ import java.util.Set;
 public class Fight {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fightid", unique = true, nullable = false)
     private Long fightid;
 
     @ManyToMany(mappedBy = "fights")
@@ -17,6 +18,34 @@ public class Fight {
     private Long identifWin;
 
     private Long identifEvent;
+
+    private String description;
+
+    private String filename;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getFightid() {
+        return fightid;
+    }
+
+    public void setFightid(Long fightid) {
+        this.fightid = fightid;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
     public Long getId() {
         return fightid;
