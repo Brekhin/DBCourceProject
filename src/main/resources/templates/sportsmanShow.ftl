@@ -7,7 +7,7 @@
         <#if sportsman.filename??>
             <img src="/img/${sportsman.filename}" class="card-img-top">
         </#if>
-
+        <div class="text-center">
             <p>Имя: ${sportsman.firstName}
 
             <p>Фамилия: ${sportsman.lastName}
@@ -21,6 +21,7 @@
             <p>Количество ничьих: ${sportsman.countOfDraw}</p>
         <div>
             <a class="btn btn-info" href="/edit/${sportsman.id}">Edit profile</a>
+        </div>
         </div>
     </div>
     </form>
