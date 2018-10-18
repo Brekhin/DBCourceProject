@@ -35,9 +35,6 @@ public class FightController {
     @GetMapping("/fights")
     public String getAllFights(Model model) {
         List<Fight> fights = fightServise.getAllFight();
-        for (Fight str : fights) {
-            System.out.println("1");
-        }
         model.addAttribute("fights", fights);
         return "fights";
     }
@@ -51,7 +48,6 @@ public class FightController {
     public String addFight(@Valid Fight fight,
                            @RequestParam String aliasFirstFighter,
                            @RequestParam String aliasSecondFighter,
-                           @RequestParam String description,
                            @RequestParam("file") MultipartFile file) {
 
         try {
