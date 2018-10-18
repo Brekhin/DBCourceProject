@@ -15,6 +15,10 @@ public class Fight {
     @ManyToMany(mappedBy = "fights")
     private Set<Sportsman> sportsmans;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "eventid")
+    private Event event;
+
     private Long identifWin;
 
     private Long identifEvent;
@@ -22,6 +26,14 @@ public class Fight {
     private String description;
 
     private String filename;
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
 
     public String getDescription() {
         return description;

@@ -2,14 +2,16 @@ package ru.kizilov.dbcourceproject.models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "events")
+@Table(name = "eventstable")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventid", unique = true, nullable = false)
     private Long id;
 
     public String geoPosition;
@@ -18,13 +20,29 @@ public class Event {
 
     public String name;
 
-    public String Title;
+    public String description;
 
-    @OneToMany
-    private Set<Fight> fights;
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Fight> fights = new HashSet<>();
+
+    public Event(Long id, String geoPosition, String name, String description, Set<Fight> fights) {
+        this.id = id;
+        this.geoPosition = geoPosition;
+        this.date = date;
+        this.name = name;
+        this.description = description;
+        this.fights = fights;
+    }
+
+    public Event() {
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGeoPosition() {
@@ -51,11 +69,31 @@ public class Event {
         this.name = name;
     }
 
-    public String getTitle() {
-        return Title;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Fight> getFights() {
+        return fights;
+    }
+
+    public void setFights(Set<Fight> fights) {
+        this.fights = fights;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", geoPosition='" + geoPosition + '\'' +
+                ", date=" + date +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", fights=" + fights +
+                '}';
     }
 }
