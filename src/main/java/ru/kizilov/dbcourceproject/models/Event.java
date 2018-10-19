@@ -1,7 +1,9 @@
 package ru.kizilov.dbcourceproject.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ public class Event {
 
     public String geoPosition;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     public Date date;
 
     public String name;

@@ -11,6 +11,8 @@ import ru.kizilov.dbcourceproject.service.EventService;
 import ru.kizilov.dbcourceproject.service.FightServise;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,14 +38,13 @@ public class EventController {
     }
 
     @PostMapping("/newEvent")
-    public String newEvent(@RequestParam("present") List<String> present, @Valid Event event){
-//        for(String s : present) {
-//            System.out.println(s);
-//        }
-//        if(event != null){
-//            System.out.println(event);
-//        }
-        eventService.addEvent(event, present);
+    public String newEvent(@RequestParam("present") List<String> present,
+                           @Valid Event event){
+        try {
+            eventService.addEvent(event, present);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return "redirect:/events";
     }
 }

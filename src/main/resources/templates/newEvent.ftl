@@ -24,6 +24,13 @@
             </div>
     </div>
 
+    <div class="form-group-row">
+        <label class="col-sm-2 col-form-label">Дата события</label>
+        <div class="col-sm-6">
+            <input type="date" class="form-control" id="date" name="date" placeholder="Дата" required>
+        </div>
+    </div>
+
     <div class="card-columns">
         <#list allFights as fight>
         <#if fight??>
