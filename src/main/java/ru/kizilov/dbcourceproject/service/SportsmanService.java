@@ -47,8 +47,15 @@ public class SportsmanService {
     }
 
     public Sportsman getFighterByAlias(String alias) {
-        System.out.println(sportsmanRepo.findByAlias(alias).getAlias() + "---" + sportsmanRepo.findByAlias(alias).getFirstName());
         return sportsmanRepo.findByAlias(alias);
+    }
+
+    public List<Sportsman> searchByGrowth(String filter){
+        return sportsmanRepo.findByGrowthAfter(Integer.parseInt(filter));
+    }
+
+    public List<Sportsman> searchByWeight(String filter){
+        return sportsmanRepo.findByWeightAfter(Integer.parseInt(filter));
     }
 
     public List<Sportsman> getAllSportsmans() {

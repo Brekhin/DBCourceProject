@@ -12,6 +12,7 @@ import ru.kizilov.dbcourceproject.service.SportsmanService;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,8 +26,32 @@ public class SportsmanController {
     private String uploadPath;
 
     @GetMapping("/index")
-    public String sportsmansList(Model model) {
-        model.addAttribute("sportsmans", sportsmanService.getAllSportsmans());
+    public String sportsmansList(@RequestParam(name = "filter", required = false, defaultValue = "") String filter,
+                                 @RequestParam(name = "present", required = false) String filterBy,
+                                 Model model) {
+        Iterable<Sportsman> sportsmans = sportsmanService.getAllSportsmans();
+        if(filter.isEmpty() || filter == null) {
+            sportsmans = sportsmanService.getAllSportsmans();
+        } else{
+            if(filterBy == null){
+                System.out.println("12333333");
+            }else {
+                System.out.println(filterBy);
+
+                if (filterBy.equals("1")) {
+                    System.out.println("1");
+                    sportsmans = sportsmanService.searchByGrowth(filter);
+                }
+                if (filterBy.equals("2")){
+                    System.out.println("2");
+                    sportsmans = sportsmanService.searchByWeight(filter);
+                }
+            }
+
+        }
+
+        model.addAttribute("sportsmans", sportsmans);
+        model.addAttribute("filter", filter);
         return "index";
     }
 

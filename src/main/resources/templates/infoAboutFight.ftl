@@ -13,11 +13,8 @@
             <#if fight.getDescription()??>
                 <p>${fight.getDescription()}</p>
             </#if>
-            <p>${fight.getSportsmans()[0].getFirstName()} против ${fight.getSportsmans()[1].getFirstName()}</p>
-
-            <div class="card-footer text-muted">
-                <a href="/index/${fight.getSportsmans()[0].getId()}">Show profile</a>
-            </div>
+            <p><a href="/index/${fight.getSportsmans()[0].getId()}">${fight.getSportsmans()[0].getFirstName()}</a> против
+               <a href="/index/${fight.getSportsmans()[1].getId()}">${fight.getSportsmans()[1].getFirstName()}</a></p>
         </div>
     </div>
     </form>
