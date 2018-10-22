@@ -30,7 +30,7 @@ public class EventService {
                 event.setFights(new HashSet<Fight>());
             }
             event.getFights().add(fightFromDB);
-            eventRepo.save(event);
+            //eventRepo.save(event);
         }
         System.out.println(event);
         eventRepo.save(event);
@@ -54,11 +54,12 @@ public class EventService {
                     fightFromDB.setEvent(eventFromDB);
 
                     if (fights == null) {
-                        eventFromDB.setFights(new HashSet<Fight>());
+                        event.setFights(new HashSet<Fight>());
                     }
-                    eventFromDB.getFights().add(fightFromDB);
-                    eventRepo.save(eventFromDB);
+                    event.getFights().add(fightFromDB);
+
                 }
+                eventRepo.save(event);
             }
         }
     }

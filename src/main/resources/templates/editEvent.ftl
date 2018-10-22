@@ -1,7 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<form action="/events/edit/{id}" method="post">
+<form method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div class="form-group-row">
                 <label class="col-sm-2 col-form-label">geoPosition</label>
@@ -28,7 +28,9 @@
         <div class="form-group-row">
             <label class="col-sm-2 col-form-label">Дата события</label>
             <div class="col-sm-6">
-                <input type="date" class="form-control" id="date" name="date" placeholder=${singleEvent.getDate()?string("yyyy-MM-dd")} required>
+                <#if singleEvent.getDate()??>
+                    <input type="date" class="form-control" id="date" name="date" placeholder=${singleEvent.getDate()?string("yyyy-MM-dd")} required>
+                 </#if>
             </div>
         </div>
 
@@ -60,8 +62,6 @@
         </#list>
     </div>
 
-    <div class="card-footer text-muted">
-        <a href="/events/${singleEvent.getId()}">Apply</a>
-     </div>
+    <button type="submit">Save</button>
 </form>
 </@c.page>

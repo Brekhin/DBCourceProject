@@ -49,10 +49,10 @@ public class EventController {
     }
 
     @PostMapping("/events/edit/{id}")
-    public String getEventByIdForEditSave(@RequestParam("present") List<String> present,
+    public String getEventByIdForEditSave(@RequestParam(value = "present", required = false) List<String> present,
                                           @Valid Event event) {
         eventService.save(event, present);
-        return "redirect:/events";
+        return "redirect:/events/{id}";
     }
 
     @GetMapping("/newevent")
