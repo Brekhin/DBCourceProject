@@ -7,21 +7,21 @@
                 <label class="col-sm-2 col-form-label">geoPosition</label>
                 <div class="col-sm-6">
                     <input type="text" name="geoPosition" class="form-control"
-                           placeholder=${singleEvent.getGeoPosition()} />
+                           value=${singleEvent.getGeoPosition()} />
                 </div>
         </div>
         <div class="form-group-row">
             <label class="col-sm-2 col-form-label">name</label>
             <div class="col-sm-6">
                 <input type="text" name="name" class="form-control"
-                       placeholder=${singleEvent.getName()} />
+                       value=${singleEvent.getName()} />
             </div>
         </div>
         <div class="form-group-row">
             <label class="col-sm-2 col-form-label">description</label>
             <div class="col-sm-6">
                 <input type="text" name="description" class="form-control"
-                       placeholder=${singleEvent.getDescription()} />
+                       value=${singleEvent.getDescription()} />
                 </div>
         </div>
 
@@ -29,7 +29,7 @@
             <label class="col-sm-2 col-form-label">Дата события</label>
             <div class="col-sm-6">
                 <#if singleEvent.getDate()??>
-                    <input type="date" class="form-control" id="date" name="date" placeholder=${singleEvent.getDate()?string("yyyy-MM-dd")} required>
+                    <input type="date" class="form-control" id="date" name="date" value=${singleEvent.getDate()?string("yyyy-MM-dd")} required>
                  </#if>
             </div>
         </div>

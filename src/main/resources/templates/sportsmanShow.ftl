@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 
 <@c.page>
 <div class="row h-100 justify-content-center align-items-center">
@@ -19,9 +20,11 @@
             <p>Количество поражений: ${sportsman.countOfLose}</p>
             <p>Количество побед: ${sportsman.countOfWin}</p>
             <p>Количество ничьих: ${sportsman.countOfDraw}</p>
+        <#if isAdmin>
         <div>
             <a class="btn btn-info" href="/edit/${sportsman.id}">Edit profile</a>
         </div>
+        </#if>
         </div>
     </div>
     </form>

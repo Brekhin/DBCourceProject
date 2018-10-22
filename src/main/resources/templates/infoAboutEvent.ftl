@@ -7,7 +7,7 @@
 
             <h1 class="display-6">${singleEvent.getGeoPosition()}</h1>
             <#if singleEvent.getDate()??>
-                <h1 class="display-6">${singleEvent.getDate()}</h1>
+                <h1 class="display-6">${singleEvent.getDate()?string("yyyy-MM-dd")}</h1>
             </#if>
             <p class="lead">
                 ${singleEvent.getDescription()}

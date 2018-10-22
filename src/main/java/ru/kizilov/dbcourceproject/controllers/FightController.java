@@ -66,6 +66,21 @@ public class FightController {
         return "infoAboutFight";
     }
 
+    @GetMapping("/fights/edit/{fightid}")
+    public String showFightForEdit(@Valid Fight fight, Model model) {
+        Optional<Fight> fightFormDB = fightServise.getFightByID(fight.getId());
+        model.addAttribute("fight", fightFormDB.get());
+        return "editFight";
+    }
+
+
+    @PostMapping("/fights/edit/{fightid}")
+    public String editFight(@RequestParam(value="present", required = false) List<String> present,
+                            @PathVariable(name = "fightid") Long id) {
+        fightServise.editFight(present, fightServise.getFightByID(id).get());
+        return "redirect:/fights/{fightid}";
+    }
+
     private void saveFile(@Valid Fight fight, @RequestParam("file") MultipartFile file) throws IOException {
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);

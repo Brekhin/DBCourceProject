@@ -1,7 +1,9 @@
 package ru.kizilov.dbcourceproject.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,7 +41,7 @@ public class Sportsman {
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "fightid")
     )
-    private Set<Fight> fights = new HashSet<>();
+    private List<Fight> fights = new ArrayList<>();
 
     private String filename;
 
@@ -55,11 +57,11 @@ public class Sportsman {
         return id;
     }
 
-    public Set<Fight> getFights() {
+    public List<Fight> getFights() {
         return fights;
     }
 
-    public void setFights(Set<Fight> fights) {
+    public void setFights(List<Fight> fights) {
         this.fights = fights;
     }
 

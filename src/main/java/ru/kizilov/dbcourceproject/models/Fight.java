@@ -1,6 +1,7 @@
 package ru.kizilov.dbcourceproject.models;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,7 +14,7 @@ public class Fight {
     private Long fightid;
 
     @ManyToMany(mappedBy = "fights")
-    private Set<Sportsman> sportsmans;
+    private List<Sportsman> sportsmans;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "eventid")
@@ -67,11 +68,11 @@ public class Fight {
         this.fightid = id;
     }
 
-    public Set<Sportsman> getSportsmans() {
+    public List<Sportsman> getSportsmans() {
         return sportsmans;
     }
 
-    public void setSportsmans(Set<Sportsman> sportsmans) {
+    public void setSportsmans(List<Sportsman> sportsmans) {
         this.sportsmans = sportsmans;
     }
 
