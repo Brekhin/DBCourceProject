@@ -1,6 +1,11 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 <@c.page>
-
+ <#if isAdmin>
+<div class="card-footer text-muted">
+    <a href="/newfight">Добавить бой</a>
+</div>
+</#if>
 <form method="get" action="/fights">
 <div class="card-columns">
     <#list fights as fight>

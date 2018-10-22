@@ -1,5 +1,11 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 <@c.page>
+ <#if isAdmin>
+<div class="card-footer text-muted">
+    <a href="/newsportsman">Добавить бойца</a>
+</div>
+</#if>
 <form method="get" action="/index">
 <div class="card-columns">
     <#list sportsmans as sportsman>

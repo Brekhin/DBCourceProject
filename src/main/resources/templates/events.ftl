@@ -1,8 +1,12 @@
 <#import "parts/common.ftl" as c>
 <#import "parts/login.ftl" as l>
-
+<#include "parts/security.ftl">
 <@c.page>
-
+ <#if isAdmin>
+<div class="card-footer text-muted">
+    <a href="/newevent">Добавить событие</a>
+</div>
+</#if>
 <form method="get">
     <div class="card-columns">
         <#list allEvent as event>
