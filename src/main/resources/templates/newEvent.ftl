@@ -32,7 +32,7 @@
     </div>
 
     <div class="card-columns">
-        <#list allFights as fight>
+        <#list listFights as fight>
         <#if fight??>
             <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="present" name="present" value="${fight.getFightid()}">
@@ -59,6 +59,6 @@
             </#if>
          </#list>
         </div>
-<button class="btn btn-primary" type="submit">Save</button>
+<button class="btn btn-primary" type="submit">Add</button>
 </form>
 </@c.page>

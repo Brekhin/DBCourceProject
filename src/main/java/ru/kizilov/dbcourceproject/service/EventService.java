@@ -7,10 +7,9 @@ import ru.kizilov.dbcourceproject.models.Fight;
 import ru.kizilov.dbcourceproject.repositories.EventRepo;
 import ru.kizilov.dbcourceproject.repositories.FightRepo;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class EventService {
@@ -39,5 +38,28 @@ public class EventService {
 
     public List<Event> getAllEvent() {
         return eventRepo.findAll();
+    }
+
+    public Event getEventById(Long id) {
+        return eventRepo.getOne(id);
+    }
+
+    public void save(Event event, List<String> present) {
+        Event eventFromDB = eventRepo.getOne(event.getId());
+        if(eventFromDB != null) {
+            if (present != null) {
+                for (String s : present) {
+                    Set<Fight> fights = eventFromDB.getFights();
+                    Fight fightFromDB = fightRepo.findById(Long.parseLong(s)).get();
+                    fightFromDB.setEvent(eventFromDB);
+
+                    if (fights == null) {
+                        eventFromDB.setFights(new HashSet<Fight>());
+                    }
+                    eventFromDB.getFights().add(fightFromDB);
+                    eventRepo.save(eventFromDB);
+                }
+            }
+        }
     }
 }

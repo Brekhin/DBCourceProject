@@ -15,14 +15,24 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String mail;
+    private String username;
 
     private String password;
+
+    private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -44,13 +54,6 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public String getPassword() {
         return password;
@@ -64,9 +67,13 @@ public class User implements UserDetails {
         return roles.contains(Role.ADMIN);
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String getUsername() {
-        return getMail();
+        return username;
     }
 
     @Override
