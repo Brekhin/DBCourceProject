@@ -16,9 +16,9 @@
             </#if>
 
             <div>
-                <input type="checkbox" class="form-check-input" id="present" name="present" value="1">1</input>
-                <input type="checkbox" class="form-check-input" id="present" name="present" value="2">2</input>
-                <input type="checkbox" class="form-check-input" id="present" name="present" value="3">3</input>
+                <p><input type="checkbox" class="form-check-input" id="present" name="present" value="1">Победа первого бойца</input></p>
+                <p><input type="checkbox" class="form-check-input" id="present" name="present" value="2">Победа второго байца</input></p>
+                <p><input type="checkbox" class="form-check-input" id="present" name="present" value="3">Ничья</input></p>
             </div>
 
             <p><a href="/index/${fight.getSportsmans()[0].getId()}">${fight.getSportsmans()[0].getFirstName()}</a> против

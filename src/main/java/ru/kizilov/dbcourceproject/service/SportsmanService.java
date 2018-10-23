@@ -58,6 +58,10 @@ public class SportsmanService {
         return sportsmanRepo.findByWeightAfter(Integer.parseInt(filter));
     }
 
+    public Sportsman getOne(Long id) {
+        return sportsmanRepo.findById(id).get();
+    }
+
     public List<Sportsman> getAllSportsmans() {
         return sportsmanRepo.findAll();
     }

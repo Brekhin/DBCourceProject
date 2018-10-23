@@ -38,58 +38,59 @@ public class FightServise {
 
     //тут очень плохой код, но мне лень писать нормально :-(
     public void editFight(List<String> winId, Fight fight){
-        System.out.println("AAA" + winId.get(0));
-        if(!winId.get(0).isEmpty()){
-            if(winId.get(0).equals("1")){
-                Long id = fight.getSportsmans().get(0).getId();
-                fight.setIdentifWin(id);
-                Sportsman sportsman = sportsmanRepo.findById(id).get();
+        if(fight.getIdentifWin() == 0) {
+            if (!winId.get(0).isEmpty()) {
+                if (winId.get(0).equals("1")) {
+                    Long id = fight.getSportsmans().get(0).getId();
+                    fight.setIdentifWin(id);
+                    Sportsman sportsman = sportsmanRepo.findById(id).get();
 
-                int countOfWin = sportsman.getCountOfWin() + 1;
-                sportsman.setCountOfWin(countOfWin);
+                    int countOfWin = sportsman.getCountOfWin() + 1;
+                    sportsman.setCountOfWin(countOfWin);
 
-                Long idLose = fight.getSportsmans().get(1).getId();
-                Sportsman sportsmanLose = sportsmanRepo.findById(idLose).get();
-                int countOfLose = sportsmanLose.getCountOfLose() + 1;
-                sportsmanLose.setCountOfLose(countOfLose);
-
-                fightRepo.save(fight);
-                sportsmanRepo.save(sportsmanLose);
-                sportsmanRepo.save(sportsman);
-            }
-            if(winId.get(0).equals("2")){
-                Long id = fight.getSportsmans().get(1).getId();
-                fight.setIdentifWin(id);
-                Sportsman sportsman = sportsmanRepo.findById(id).get();
-                int countOfWin = sportsman.getCountOfWin() + 1;
-                sportsman.setCountOfWin(countOfWin);
-
-                Long idLose = fight.getSportsmans().get(0).getId();
-                Sportsman sportsmanLose = sportsmanRepo.findById(idLose).get();
-                int countOfLose = sportsmanLose.getCountOfLose() + 1;
-                sportsmanLose.setCountOfLose(countOfLose);
-
-                fightRepo.save(fight);
-                sportsmanRepo.save(sportsmanLose);
-                sportsmanRepo.save(sportsman);
-            }
-            if(winId.get(0).equals("3")){
-                Long id = fight.getSportsmans().get(0).getId();
-                fight.setIdentifWin(id);
-
-                Sportsman sportsman = sportsmanRepo.findById(id).get();
-                int countOfDraw = sportsman.getCountOfDraw() + 1;
-                sportsman.setCountOfDraw(countOfDraw);
-
-                Long id2 = fight.getSportsmans().get(1).getId();
-                Sportsman sportsman1 = sportsmanRepo.findById(id2).get();
-                int countOfDraw2 = sportsman1.getCountOfDraw() + 1;
-                sportsman1.setCountOfDraw(countOfDraw2);
+                    Long idLose = fight.getSportsmans().get(1).getId();
+                    Sportsman sportsmanLose = sportsmanRepo.findById(idLose).get();
+                    int countOfLose = sportsmanLose.getCountOfLose() + 1;
+                    sportsmanLose.setCountOfLose(countOfLose);
 
 
-                fightRepo.save(fight);
-                sportsmanRepo.save(sportsman1);
-                sportsmanRepo.save(sportsman);
+                    sportsmanRepo.save(sportsmanLose);
+                    sportsmanRepo.save(sportsman);
+                }
+                if (winId.get(0).equals("2")) {
+                    Long id = fight.getSportsmans().get(1).getId();
+                    fight.setIdentifWin(id);
+                    Sportsman sportsman = sportsmanRepo.findById(id).get();
+                    int countOfWin = sportsman.getCountOfWin() + 1;
+                    sportsman.setCountOfWin(countOfWin);
+
+                    Long idLose = fight.getSportsmans().get(0).getId();
+                    Sportsman sportsmanLose = sportsmanRepo.findById(idLose).get();
+                    int countOfLose = sportsmanLose.getCountOfLose() + 1;
+                    sportsmanLose.setCountOfLose(countOfLose);
+
+
+                    sportsmanRepo.save(sportsmanLose);
+                    sportsmanRepo.save(sportsman);
+                }
+                if (winId.get(0).equals("3")) {
+                    Long id = fight.getSportsmans().get(0).getId();
+                    fight.setIdentifWin(id);
+
+                    Sportsman sportsman = sportsmanRepo.findById(id).get();
+                    int countOfDraw = sportsman.getCountOfDraw() + 1;
+                    sportsman.setCountOfDraw(countOfDraw);
+
+                    Long id2 = fight.getSportsmans().get(1).getId();
+                    Sportsman sportsman1 = sportsmanRepo.findById(id2).get();
+                    int countOfDraw2 = sportsman1.getCountOfDraw() + 1;
+                    sportsman1.setCountOfDraw(countOfDraw2);
+
+
+
+                    sportsmanRepo.save(sportsman1);
+                    sportsmanRepo.save(sportsman);
+                }
             }
         }
         fightRepo.save(fight);

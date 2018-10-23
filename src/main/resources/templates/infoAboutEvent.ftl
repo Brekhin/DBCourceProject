@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 
 <@c.page>
     <form>
@@ -36,8 +37,11 @@
                             No fight
                         </#list>
         </div>
+
+        <#if isAdmin>
         <div class="card-footer text-muted">
             <a href="/events/edit/${singleEvent.getId()}">Edit</a>
         </div>
+        </#if>
     </form>
 </@c.page>

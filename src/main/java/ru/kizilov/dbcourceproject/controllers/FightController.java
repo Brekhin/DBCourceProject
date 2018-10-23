@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kizilov.dbcourceproject.models.Fight;
+import ru.kizilov.dbcourceproject.models.Sportsman;
 import ru.kizilov.dbcourceproject.service.FightServise;
 import ru.kizilov.dbcourceproject.service.SportsmanService;
 
@@ -62,6 +63,11 @@ public class FightController {
     @GetMapping("/fights/{fightid}")
     public String showFight(@PathVariable Long fightid, Model model) {
         Optional<Fight> fight = fightServise.getFightByID(fightid);
+        Long id = fight.get().getIdentifWin();
+        if( id != 0){
+            Sportsman sportsman = sportsmanService.getOne(id);
+            model.addAttribute("sportsmanWin", sportsman);
+        }
         model.addAttribute("fight", fight.get());
         return "infoAboutFight";
     }
